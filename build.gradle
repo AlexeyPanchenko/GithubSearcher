@@ -1,0 +1,33 @@
+
+buildscript {
+    ext {
+        appcompat_version = '26.1.0'
+        retrofit_version = '2.3.0'
+        log_interceptor_version = '3.9.1'
+        android_plugin_version = '3.0.1'
+        rxjava_version = '2.1.8'
+        rxandroid_version = '2.0.1'
+        toothpick_version = '1.1.1'
+        arch_version = '1.0.0'
+        gson_version = '2.8.2'
+    }
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$android_plugin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

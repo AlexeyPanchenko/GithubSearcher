@@ -1,0 +1,26 @@
+package ru.alexeyp.searchrepo.router.start;
+
+
+import android.support.v7.app.AppCompatActivity;
+
+import ru.alexeyp.searchrepo.screens.login.LoginActivity;
+import ru.alexeyp.searchrepo.screens.main.MainActivity;
+
+public class StartRouterImpl extends StartRouter {
+
+    private AppCompatActivity activity;
+
+    public StartRouterImpl(AppCompatActivity activity) {
+        this.activity = activity;
+    }
+
+    @Override
+    public void navigateToLogin() {
+        startActivity(activity, LoginActivity.class);
+    }
+
+    @Override
+    public void navigateToMain() {
+        startActivity(activity, MainActivity.class);
+    }
+}

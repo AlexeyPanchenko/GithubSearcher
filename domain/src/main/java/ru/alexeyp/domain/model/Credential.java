@@ -3,19 +3,19 @@ package ru.alexeyp.domain.model;
 
 public class Credential {
 
-    private final String login;
-    private final String password;
+    private final String _login;
+    private final String _password;
 
     public Credential(String login, String password) {
-        this.login = login;
-        this.password = password;
+        _login = login;
+        _password = password;
     }
 
     public String getLogin() {
-        return login;
+        return _login;
     }
 
     public String getPassword() {
-        return password;
+        return _password;
     }
 }

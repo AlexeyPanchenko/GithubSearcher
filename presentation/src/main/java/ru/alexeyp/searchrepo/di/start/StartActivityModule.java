@@ -1,6 +1,5 @@
 package ru.alexeyp.searchrepo.di.start;
 
-
 import ru.alexeyp.searchrepo.router.start.StartRouter;
 import ru.alexeyp.searchrepo.router.start.StartRouterImpl;
 import ru.alexeyp.searchrepo.screens.start.StartActivity;

@@ -22,4 +22,9 @@ public class LoginInteractorImpl implements LoginInteractor {
         }
         return _repository.signIn(credential);
     }
+
+    @Override
+    public Completable checkUser() {
+        return _repository.checkUser();
+    }
 }

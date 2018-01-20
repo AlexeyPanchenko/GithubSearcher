@@ -53,16 +53,8 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$arch_version"
     implementation "android.arch.lifecycle:reactivestreams:$arch_version"
 
-    // Room
-    implementation "android.arch.persistence.room:runtime:$arch_version"
-    implementation "android.arch.persistence.room:rxjava2:$arch_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
-
     // DataBinding
     annotationProcessor "com.android.databinding:compiler:$android_plugin_version"
-
-    // Gson
-    implementation "com.google.code.gson:gson:$gson_version"
 
     // Butterknife
     implementation "com.jakewharton:butterknife:$butterknife_version"

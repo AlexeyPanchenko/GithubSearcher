@@ -35,6 +35,10 @@ public class LoginViewModel extends LCEViewModel {
         _router.navigateToMain();
     }
 
+    void onInfoDialogClosed() {
+        setContentState();
+    }
+
     @Override
     protected void onCleared() {
         Toothpick.closeScope(Scopes.LOGIN_SCOPE);

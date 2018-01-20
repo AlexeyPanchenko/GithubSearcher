@@ -1,6 +1,5 @@
 package ru.alexeyp.searchrepo.utils.base;
 
-
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableInt;
@@ -13,11 +12,15 @@ public class LCEViewModel extends ViewModel {
     private MutableLiveData<ObservableInt> _state;
     private Throwable _error;
 
-    public LCEViewModel() {
+    protected LCEViewModel() {
         _obsState = new ObservableInt();
         _state = new MutableLiveData<>();
         _error = null;
         _state.setValue(_obsState);
+    }
+
+    public MutableLiveData<ObservableInt> getState() {
+        return _state;
     }
 
     protected void setContentState(){
@@ -35,10 +38,6 @@ public class LCEViewModel extends ViewModel {
 
     protected void setState(int state) {
         changeState(state);
-    }
-
-    public MutableLiveData<ObservableInt> getState() {
-        return _state;
     }
 
     protected Throwable getError() {

@@ -40,11 +40,6 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$log_interceptor_version"
 
-    // Room
-    implementation "android.arch.persistence.room:runtime:$arch_version"
-    implementation "android.arch.persistence.room:rxjava2:$arch_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

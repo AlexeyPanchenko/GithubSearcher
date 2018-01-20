@@ -10,6 +10,7 @@ buildscript {
         toothpick_version = '1.1.1'
         arch_version = '1.0.0'
         gson_version = '2.8.2'
+        butterknife_version = '8.8.1'
     }
     
     repositories {

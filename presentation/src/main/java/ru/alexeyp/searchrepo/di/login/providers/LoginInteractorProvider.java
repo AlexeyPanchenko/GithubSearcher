@@ -8,15 +8,15 @@ import ru.alexeyp.domain.login.LoginRepository;
 
 public class LoginInteractorProvider implements Provider<LoginInteractorImpl> {
 
-    private LoginRepository repository;
+    private LoginRepository _repository;
 
     @Inject
     public LoginInteractorProvider(LoginRepository repository) {
-        this.repository = repository;
+        _repository = repository;
     }
 
     @Override
     public LoginInteractorImpl get() {
-        return new LoginInteractorImpl(repository);
+        return new LoginInteractorImpl(_repository);
     }
 }

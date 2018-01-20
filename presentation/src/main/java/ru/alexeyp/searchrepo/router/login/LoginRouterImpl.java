@@ -14,6 +14,6 @@ public class LoginRouterImpl extends LoginRouter {
 
     @Override
     public void navigateToMain() {
-        startActivity(activity, MainActivity.class);
+        startActivityWithClearBackstack(activity, MainActivity.class);
     }
 }

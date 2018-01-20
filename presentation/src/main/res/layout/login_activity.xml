@@ -1,18 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ru.alexeyp.searchrepo.screens.login.LoginActivity">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <import type="ru.alexeyp.searchrepo.utils.State"/>
+        <variable
+            name="viewModel"
+            type="ru.alexeyp.searchrepo.screens.login.LoginViewModel"/>
+    </data>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
-</android.support.constraint.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <FrameLayout
+                android:id="@+id/image_container"
+                android:layout_width="@dimen/logo_size"
+                android:layout_height="@dimen/logo_size"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:visibility="@{viewModel.getState().getValue() == State.PROGRESS ? View.VISIBLE : View.GONE}"/>
+
+                <ImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:visibility="@{viewModel.getState().getValue() != State.PROGRESS ? View.VISIBLE : View.GONE}"
+                    app:srcCompat="@drawable/ic_github_logo" />
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/et_username"
+                style="@style/LoginEditText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/shape_oval_white"
+                android:ems="10"
+                android:hint="@string/login_username"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_container" />
+
+            <EditText
+                android:id="@+id/et_password"
+                style="@style/LoginEditText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_oval_white"
+                android:ems="10"
+                android:hint="@string/login_password"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_username" />
+
+            <TextView
+                android:id="@+id/tv_sign_in"
+                style="@style/WhiteSerifText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/login_signIn"
+                app:layout_constraintEnd_toEndOf="@+id/et_password"
+                app:layout_constraintStart_toStartOf="@+id/et_password"
+                app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+            <TextView
+                android:id="@+id/tv_sign_in_anonymous"
+                style="@style/WhiteSerifText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/login_signIn_anonymous"
+                app:layout_constraintEnd_toEndOf="@+id/tv_sign_in"
+                app:layout_constraintStart_toStartOf="@+id/tv_sign_in"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sign_in" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+
+</layout>

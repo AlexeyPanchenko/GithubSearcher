@@ -17,4 +17,10 @@ public abstract class Router {
         intent.putExtras(args);
         context.startActivity(intent);
     }
+
+    protected <T extends Activity> void startActivityWithClearBackstack(Context context, Class<T> activity){
+        Intent intent = new Intent(context, activity);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+    }
 }

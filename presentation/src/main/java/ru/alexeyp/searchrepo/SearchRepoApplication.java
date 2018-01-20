@@ -2,7 +2,6 @@ package ru.alexeyp.searchrepo;
 
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
-
 import ru.alexeyp.searchrepo.di.Scopes;
 import ru.alexeyp.searchrepo.di.application.AppModule;
 import toothpick.Toothpick;

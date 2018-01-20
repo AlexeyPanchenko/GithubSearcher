@@ -1,7 +1,7 @@
 package ru.alexeyp.data.network;
 
+import android.text.TextUtils;
 import com.google.gson.Gson;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -11,24 +11,31 @@ import ru.alexeyp.data.BuildConfig;
 
 public class RetrofitBuilder {
 
-    public static GitHubApi create(String url) {
-        OkHttpClient client = getClient();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
-                .client(client)
+    public static final String API_BASE_URL = "https://api.github.com";
+
+    public static GitHubApi create(String authToken) {
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(getClient(authToken))
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         return retrofit.create(GitHubApi.class);
     }
 
-    private static OkHttpClient getClient() {
-        final OkHttpClient.Builder builder = new OkHttpClient.Builder();
+    private static OkHttpClient getClient(String authToken) {
+        final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            builder.addInterceptor(loggingInterceptor);
+            clientBuilder.addInterceptor(loggingInterceptor);
         }
-        return builder.build();
+        if (!TextUtils.isEmpty(authToken)) {
+            AuthInterceptor authInterceptor = new AuthInterceptor(authToken);
+            if (!clientBuilder.interceptors().contains(authInterceptor)) {
+                clientBuilder.addInterceptor(authInterceptor);
+            }
+        }
+        return clientBuilder.build();
     }
 }

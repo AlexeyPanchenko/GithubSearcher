@@ -7,16 +7,16 @@ import android.support.annotation.NonNull;
 
 import javax.inject.Inject;
 
-import ru.alexeyp.domain.login.LoginInteractor;
+import ru.alexeyp.domain.interactors.user.UserInteractor;
 import ru.alexeyp.searchrepo.router.login.LoginRouter;
 
 public class LoginViewModelFactory implements ViewModelProvider.Factory {
 
     private LoginRouter _router;
-    private LoginInteractor _interactor;
+    private UserInteractor _interactor;
 
     @Inject
-    public LoginViewModelFactory(LoginRouter router, LoginInteractor interactor) {
+    public LoginViewModelFactory(LoginRouter router, UserInteractor interactor) {
         _router = router;
         _interactor = interactor;
     }

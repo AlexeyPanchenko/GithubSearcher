@@ -2,6 +2,8 @@
     <string name="app_name">SearchRepo</string>
 
     <string name="close">Close</string>
+    <string name="search_hint">Search by repositories</string>
+    <string name="search_title">Search</string>
     <string name="info_dialog_attention">Attention!</string>
 
     <string name="login_username">Username</string>
@@ -12,5 +14,7 @@
     <string name="login_error_password">Пароль не может быть пустым</string>
 
     <string name="auth_error">Wrong login or password</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="exit">Exit</string>
 
 </resources>

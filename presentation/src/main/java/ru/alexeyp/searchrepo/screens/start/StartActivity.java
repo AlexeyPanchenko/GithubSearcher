@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import javax.inject.Inject;
 import ru.alexeyp.searchrepo.di.Scopes;
-import ru.alexeyp.searchrepo.di.login.LoginModule;
 import ru.alexeyp.searchrepo.di.start.StartActivityModule;
+import ru.alexeyp.searchrepo.di.user.LoginModule;
 import toothpick.Scope;
 import toothpick.Toothpick;
 
@@ -24,8 +24,8 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void initScope() {
-        Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.LOGIN_SCOPE).installModules(new LoginModule());
-        Scope scope = Toothpick.openScopes(Scopes.LOGIN_SCOPE, Scopes.START_ACTIVITY_SCOPE);
+        Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.USER_SCOPE).installModules(new LoginModule());
+        Scope scope = Toothpick.openScopes(Scopes.USER_SCOPE, Scopes.START_ACTIVITY_SCOPE);
         scope.installModules(new StartActivityModule(this));
         Toothpick.inject(this, scope);
     }

@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import ru.alexeyp.domain.exceptions.LoginValidateException;
 import ru.alexeyp.domain.exceptions.PasswordValidateException;
-import ru.alexeyp.domain.login.LoginInteractor;
+import ru.alexeyp.domain.interactors.user.UserInteractor;
 import ru.alexeyp.domain.model.Credential;
 import ru.alexeyp.searchrepo.di.Scopes;
 import ru.alexeyp.searchrepo.router.login.LoginRouter;
@@ -15,10 +15,10 @@ import toothpick.Toothpick;
 public class LoginViewModel extends LCEViewModel {
 
     private LoginRouter _router;
-    private LoginInteractor _interactor;
+    private UserInteractor _interactor;
 
     @Inject
-    LoginViewModel(LoginRouter router, LoginInteractor interactor) {
+    LoginViewModel(LoginRouter router, UserInteractor interactor) {
         _router = router;
         _interactor = interactor;
         setContentState();
@@ -37,12 +37,6 @@ public class LoginViewModel extends LCEViewModel {
 
     void onInfoDialogClosed() {
         setContentState();
-    }
-
-    @Override
-    protected void onCleared() {
-        Toothpick.closeScope(Scopes.LOGIN_SCOPE);
-        super.onCleared();
     }
 
     private void onSignInSuccess() {

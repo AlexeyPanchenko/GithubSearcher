@@ -1,12 +1,12 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="LoginTheme" parent="AppTheme"/>
 
     <style name="WhiteSerifText">
         <item name="android:textColor">@color/white</item>
@@ -27,6 +27,17 @@
     <style name="LoginEditText" parent="ViewMarginHorizontal">
         <item name="android:paddingRight">@dimen/margin_horizontal_inner</item>
         <item name="android:paddingLeft">@dimen/margin_horizontal_inner</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView"/>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:layout_width">match_parent</item>
     </style>
 
 </resources>

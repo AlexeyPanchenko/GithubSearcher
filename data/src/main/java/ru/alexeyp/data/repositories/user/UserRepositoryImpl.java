@@ -1,9 +1,7 @@
 package ru.alexeyp.data.repositories.user;
 
-import android.text.TextUtils;
 import io.reactivex.Completable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Credentials;
 import ru.alexeyp.data.network.RetrofitBuilder;
 import ru.alexeyp.data.settings.AppPreferences;
 import ru.alexeyp.data.settings.model.User;
@@ -20,8 +18,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Completable signIn(Credential credential) {
-        String token = defineAuthToken(credential.getLogin(), credential.getPassword());
-        // TODO: RetrofitBuilder
+        String token = RetrofitBuilder.defineAuthToken(credential.getLogin(), credential.getPassword());
         return RetrofitBuilder.create(token)
                 .signIn()
                 .doOnSuccess(user -> _preferences.saveUser(new User(user.login, token)))
@@ -55,13 +52,5 @@ public class UserRepositoryImpl implements UserRepository {
                 emitter.onError(e);
             }
         }).subscribeOn(Schedulers.io());
-    }
-
-    private String defineAuthToken(String login, String password) {
-        String authToken = null;
-        if (!TextUtils.isEmpty(login) && !TextUtils.isEmpty(password)) {
-            authToken = Credentials.basic(login, password);
-        }
-        return authToken;
     }
 }

@@ -2,6 +2,7 @@ package ru.alexeyp.data.network;
 
 import android.text.TextUtils;
 import com.google.gson.Gson;
+import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -21,6 +22,14 @@ public class RetrofitBuilder {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         return retrofit.create(GitHubApi.class);
+    }
+
+    public static String defineAuthToken(String login, String password) {
+        String authToken = null;
+        if (!TextUtils.isEmpty(login) && !TextUtils.isEmpty(password)) {
+            authToken = Credentials.basic(login, password);
+        }
+        return authToken;
     }
 
     private static OkHttpClient getClient(String authToken) {

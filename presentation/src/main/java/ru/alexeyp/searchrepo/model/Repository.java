@@ -23,11 +23,4 @@ public class Repository {
     public String getAvatar() {
         return _avatar;
     }
-
-    @Override
-    public String toString() {
-        return "Repository(name = " + _name +
-                ", description = " + _description +
-                ", avatar = " + _avatar + ")";
-    }
 }

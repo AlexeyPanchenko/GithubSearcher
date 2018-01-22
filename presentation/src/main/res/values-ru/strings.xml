@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SearchRepo</string>
+    <string name="search_hint">Поиск по репозиториям</string>
+    <string name="search_title">Поиск</string>
+    <string name="info_dialog_attention">Внимание</string>
+    <string name="login_username">Имя пользователя</string>
+    <string name="login_password">Пароль</string>
+    <string name="login_signIn">Вход</string>
+    <string name="login_signIn_anonymous">Войти без регистрации</string>
+    <string name="login_error_name">Заполните имя</string>
+    <string name="login_error_password">Заполните пароль</string>
+    <string name="auth_error">Неверный логин или пароль</string>
+    <string name="something_error">Что-то пошло не так</string>
+    <string name="forbidden_error">Превышен лимит запросов</string>
+    <string name="exit">Выход</string>
+    <string name="close">Закрыть</string>
+</resources>

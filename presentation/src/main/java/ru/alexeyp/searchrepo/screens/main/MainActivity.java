@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity implements PaginationScrollL
     }
 
     @Override
-    public void loadNewData() {
-        _viewModel.loadMore();
+    public void onScrolledDown() {
+        _viewModel.onScrolledDown();
     }
 
     @Override
@@ -111,9 +111,13 @@ public class MainActivity extends AppCompatActivity implements PaginationScrollL
                     case MainState.LOADED_ALL:
                         _scrollListener.setEnabled(true);
                         break;
+                    case MainState.FORBIDDEN_ERROR:
+                        InfoDialogFragment
+                                .showDialog(getSupportFragmentManager(), getString(R.string.forbidden_error));
+                        break;
                     case State.ERROR:
                         InfoDialogFragment
-                                .showDialog(getSupportFragmentManager(), getString(R.string.something_wrong));
+                                .showDialog(getSupportFragmentManager(), getString(R.string.something_error));
                         break;
                 }
             }

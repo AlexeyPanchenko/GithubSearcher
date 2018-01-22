@@ -3,7 +3,6 @@ package ru.alexeyp.domain.interactors.main;
 import java.util.List;
 
 import io.reactivex.Single;
-import ru.alexeyp.domain.interactors.user.UserRepository;
 import ru.alexeyp.domain.model.Repository;
 import ru.alexeyp.domain.model.SearchQuery;
 

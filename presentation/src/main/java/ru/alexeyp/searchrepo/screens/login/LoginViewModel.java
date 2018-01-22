@@ -7,10 +7,8 @@ import ru.alexeyp.domain.exceptions.LoginValidateException;
 import ru.alexeyp.domain.exceptions.PasswordValidateException;
 import ru.alexeyp.domain.interactors.user.UserInteractor;
 import ru.alexeyp.domain.model.Credential;
-import ru.alexeyp.searchrepo.di.Scopes;
 import ru.alexeyp.searchrepo.router.login.LoginRouter;
 import ru.alexeyp.searchrepo.utils.base.LCEViewModel;
-import toothpick.Toothpick;
 
 public class LoginViewModel extends LCEViewModel {
 

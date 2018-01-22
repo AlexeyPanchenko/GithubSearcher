@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 public class PaginationScrollListener extends RecyclerView.OnScrollListener {
 
     public interface LoadListener {
-        void loadNewData();
+        void onScrolledDown();
     }
 
     private LinearLayoutManager _layoutManager;
@@ -23,7 +23,7 @@ public class PaginationScrollListener extends RecyclerView.OnScrollListener {
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
 
-        int visibleThreshold = 5;
+        int visibleThreshold = 4;
         int visibleItemCount = recyclerView.getChildCount();
         int totalItemCount = _layoutManager.getItemCount();
         int firstVisibleItem = _layoutManager.findFirstVisibleItemPosition();
@@ -35,7 +35,7 @@ public class PaginationScrollListener extends RecyclerView.OnScrollListener {
 
         if (!_isEnabled && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
             _isEnabled = true;
-            _loadListener.loadNewData();
+            _loadListener.onScrolledDown();
         }
     }
 

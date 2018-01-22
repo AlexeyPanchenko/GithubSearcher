@@ -49,21 +49,14 @@ public class MainViewModel extends LCEViewModel {
             _repositories.clear();
             setContentState();
         } else {
-            _disposable = _mainInteractor.searchRepositories(new SearchQuery(query, 1))
-                    .doOnSubscribe(d -> setProgressState())
-                    .flatMap(this::domainReposToPresentation)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::onRepositoriesSearched, this::setErrorState);
+            loadRepositories(query);
         }
     }
 
-    void loadMore() {
-        RxUtils.unsubscribe(_disposable);
-        _disposable = _mainInteractor.loadMore()
-                .doOnSubscribe(d -> setState(MainState.PROGRESS_MORE))
-                .flatMap(this::domainReposToPresentation)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onMoreLoaded, this::setErrorState);
+    void onScrolledDown() {
+        if (!_repositories.isEmpty()) {
+            loadMore();
+        }
     }
 
     void onOverflowClicked() {
@@ -85,11 +78,11 @@ public class MainViewModel extends LCEViewModel {
         return _newRepositories;
     }
 
-    public String getQuery() {
+    String getQuery() {
         return _query;
     }
 
-    public boolean isAuth() {
+    boolean isAuth() {
         return _isAuth;
     }
 
@@ -100,18 +93,34 @@ public class MainViewModel extends LCEViewModel {
         super.onCleared();
     }
 
+    private void loadRepositories(String query) {
+        _disposable = _mainInteractor.searchRepositories(new SearchQuery(query, 1))
+                .doOnSubscribe(d -> setProgressState())
+                .flatMap(this::domainReposToPresentation)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onRepositoriesSearched,  this::onError);
+    }
+
     private void onRepositoriesSearched(List<Repository> repositories) {
-        _repositories.clear();
-        _repositories.addAll(repositories);
+        _repositories = repositories;
         setContentState();
+    }
+
+    private void loadMore() {
+        RxUtils.unsubscribe(_disposable);
+        _disposable = _mainInteractor.loadMore()
+                .doOnSubscribe(d -> setState(MainState.PROGRESS_MORE))
+                .flatMap(this::domainReposToPresentation)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onMoreLoaded, this::onError);
     }
 
     private void onMoreLoaded(List<Repository> repositories) {
         if (repositories.isEmpty()) {
-            setState(MainState.LOADED_ALL);
             _newRepositories.clear();
+            setState(MainState.LOADED_ALL);
         } else  {
-            _newRepositories.addAll(repositories);
+            _newRepositories = repositories;
             _repositories.addAll(repositories);
             setState(MainState.MORE_LOADED);
         }
@@ -126,5 +135,11 @@ public class MainViewModel extends LCEViewModel {
 
     private Repository domainRepoToPresentation(ru.alexeyp.domain.model.Repository repository) {
         return new Repository(repository.getFullName(), repository.getDescription(), repository.getAvatarUrl());
+    }
+
+    private void onError(Throwable throwable) {
+        if (throwable.getMessage().contains("403")) {
+            setState(MainState.FORBIDDEN_ERROR);
+        } else setErrorState(throwable);
     }
 }

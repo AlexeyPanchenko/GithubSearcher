@@ -1,6 +1,5 @@
 package ru.alexeyp.searchrepo.screens.login;
 
-
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;

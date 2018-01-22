@@ -10,11 +10,12 @@
     <string name="login_password">Password</string>
     <string name="login_signIn">SignIn</string>
     <string name="login_signIn_anonymous">SignIn as anonymous</string>
-    <string name="login_error_name">Имя не может быть пустым</string>
-    <string name="login_error_password">Пароль не может быть пустым</string>
+    <string name="login_error_name">Fill username</string>
+    <string name="login_error_password">Fill password</string>
 
     <string name="auth_error">Wrong login or password</string>
-    <string name="something_wrong">Something went wrong</string>
+    <string name="something_error">Something went wrong</string>
+    <string name="forbidden_error">Query limit exceeded</string>
     <string name="exit">Exit</string>
 
 </resources>

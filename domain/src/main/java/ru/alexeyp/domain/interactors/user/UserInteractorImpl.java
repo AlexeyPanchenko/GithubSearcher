@@ -1,15 +1,15 @@
-package ru.alexeyp.domain.login;
+package ru.alexeyp.domain.interactors.user;
 
 import io.reactivex.Completable;
 import ru.alexeyp.domain.exceptions.LoginValidateException;
 import ru.alexeyp.domain.exceptions.PasswordValidateException;
 import ru.alexeyp.domain.model.Credential;
 
-public class LoginInteractorImpl implements LoginInteractor {
+public class UserInteractorImpl implements UserInteractor {
 
-    private LoginRepository _repository;
+    private UserRepository _repository;
 
-    public LoginInteractorImpl(LoginRepository repository) {
+    public UserInteractorImpl(UserRepository repository) {
         _repository = repository;
     }
 
@@ -26,5 +26,10 @@ public class LoginInteractorImpl implements LoginInteractor {
     @Override
     public Completable checkUser() {
         return _repository.checkUser();
+    }
+
+    @Override
+    public Completable logOut() {
+        return _repository.logOut();
     }
 }

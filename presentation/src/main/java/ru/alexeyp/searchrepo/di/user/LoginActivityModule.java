@@ -1,4 +1,4 @@
-package ru.alexeyp.searchrepo.di.login;
+package ru.alexeyp.searchrepo.di.user;
 
 import ru.alexeyp.searchrepo.router.login.LoginRouter;
 import ru.alexeyp.searchrepo.router.login.LoginRouterImpl;

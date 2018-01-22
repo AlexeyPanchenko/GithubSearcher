@@ -14,8 +14,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".screens.start.StartActivity"
-            android:theme="@style/LoginTheme"
-            android:windowSoftInputMode="adjustPan"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

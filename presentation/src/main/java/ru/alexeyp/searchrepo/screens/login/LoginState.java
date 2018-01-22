@@ -1,7 +1,7 @@
 package ru.alexeyp.searchrepo.screens.login;
 
 
-public class LoginState {
-    public static final int ERROR_NAME = 200;
-    public static final int ERROR_PASSWORD = 201;
+class LoginState {
+    static final int ERROR_NAME = 200;
+    static final int ERROR_PASSWORD = 201;
 }

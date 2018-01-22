@@ -4,16 +4,16 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 import javax.inject.Inject;
-import ru.alexeyp.domain.login.LoginInteractor;
+import ru.alexeyp.domain.interactors.user.UserInteractor;
 import ru.alexeyp.searchrepo.router.start.StartRouter;
 
 public class StartViewModelFactory implements ViewModelProvider.Factory {
 
     private StartRouter _router;
-    private LoginInteractor _interactor;
+    private UserInteractor _interactor;
 
     @Inject
-    public StartViewModelFactory(StartRouter router, LoginInteractor interactor) {
+    public StartViewModelFactory(StartRouter router, UserInteractor interactor) {
         _router = router;
         _interactor = interactor;
     }

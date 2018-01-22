@@ -8,17 +8,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.alexeyp.searchrepo.R;
 import ru.alexeyp.searchrepo.databinding.LoginActivityBinding;
 import ru.alexeyp.searchrepo.di.Scopes;
-import ru.alexeyp.searchrepo.di.login.LoginActivityModule;
-import ru.alexeyp.searchrepo.di.login.LoginModule;
-import ru.alexeyp.searchrepo.utils.ui.InfoDialogFragment;
+import ru.alexeyp.searchrepo.di.user.LoginActivityModule;
+import ru.alexeyp.searchrepo.di.user.LoginModule;
 import ru.alexeyp.searchrepo.utils.State;
+import ru.alexeyp.searchrepo.utils.ui.InfoDialogFragment;
 import toothpick.Scope;
 import toothpick.Toothpick;
 
@@ -78,8 +80,8 @@ public class LoginActivity extends AppCompatActivity implements InfoDialogFragme
     }
 
     private void initScope() {
-        Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.LOGIN_SCOPE).installModules(new LoginModule());
-        Scope scope = Toothpick.openScopes(Scopes.LOGIN_SCOPE, Scopes.LOGIN_ACTIVITY_SCOPE);
+        Toothpick.openScopes(Scopes.APP_SCOPE, Scopes.USER_SCOPE).installModules(new LoginModule());
+        Scope scope = Toothpick.openScopes(Scopes.USER_SCOPE, Scopes.LOGIN_ACTIVITY_SCOPE);
         scope.installModules(new LoginActivityModule(this));
         Toothpick.inject(this, scope);
     }
